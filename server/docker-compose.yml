@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - prebuilt-python-image
+
+  #  python-image-puller:
+  #    image: docker:dind
+  #    command: docker pull python:latest
+  #    volumes:
+  #      - /var/run/docker.sock:/var/run/docker.sock
+
+  prebuilt-python-image:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    image: prebuilt-python:latest
+
+  python:
+    image: prebuilt-python:latest
+    command: tail -f /dev/null

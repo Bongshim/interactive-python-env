@@ -1,0 +1,16 @@
+FROM python:latest
+
+# Install commonly used packages
+RUN pip install --no-cache-dir \
+    numpy \
+    pandas \
+    matplotlib \
+    flask \
+    sqlalchemy \
+    pytest
+
+# You can add more packages here as needed
+
+WORKDIR /app
+
+CMD ["python"]
